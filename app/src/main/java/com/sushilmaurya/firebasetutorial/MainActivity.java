@@ -17,5 +17,9 @@ public class MainActivity extends AppCompatActivity {
         DatabaseReference databaseReference = firebaseDatabase.getReference().child("MyMessages");
         databaseReference.setValue("Hi There");
 
+        //TODO: 1.Change the data to anything and check the value in Db
+
+        //TODO: 2.Delete the data
+
     }
 }
