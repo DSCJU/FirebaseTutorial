@@ -13,7 +13,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 public class MainActivity extends AppCompatActivity {
-
+    //TODO: Create a message class with name, and message
     FirebaseDatabase firebaseDatabase;
     DatabaseReference databaseReference;
     @Override
@@ -27,10 +27,16 @@ public class MainActivity extends AppCompatActivity {
         databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                String value = dataSnapshot.getValue(String.class);
-                TextView textView = findViewById(R.id.textView);
-
-                textView.setText(value);
+                Message message = null;
+                for (DataSnapshot each : dataSnapshot.getChildren()){
+                    message = each.getValue(Message.class);
+                }
+                TextView tvName = findViewById(R.id.tvName);
+                TextView tvMessage = findViewById(R.id.tvMessage);
+                if (message!= null) {
+                    tvName.setText(message.getName());
+                    tvMessage.setText(message.getMessage());
+                }
             }
 
             @Override
@@ -43,7 +49,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void btnSaveClicked(View view) {
-        EditText etMessage = findViewById(R.id.etName);
-        databaseReference.setValue(etMessage.getText().toString());
+        EditText etName = findViewById(R.id.etName);
+        EditText etMessage = findViewById(R.id.etMessage);
+        databaseReference.push().setValue(new Message(etName.getText().toString(), etMessage.getText().toString()));
     }
 }
