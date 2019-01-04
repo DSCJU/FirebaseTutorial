@@ -20,6 +20,8 @@ public class MainActivity extends AppCompatActivity {
         firebaseDatabase = FirebaseDatabase.getInstance();
         databaseReference = firebaseDatabase.getReference().child("MyMessages");
 
+        //TODO: Retrieve the values and show it in a textview
+
 
     }
 
