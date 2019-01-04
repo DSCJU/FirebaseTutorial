@@ -17,5 +17,7 @@ public class MainActivity extends AppCompatActivity {
         DatabaseReference databaseReference = firebaseDatabase.getReference().child("MyMessages");
         databaseReference.removeValue();
 
+        //TODO: 4.Create an Edit Text (Name) and a Button Saying Save and Try Saving that data to the database
+
     }
 }
