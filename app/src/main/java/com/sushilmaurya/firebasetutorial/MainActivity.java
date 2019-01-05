@@ -16,6 +16,8 @@ public class MainActivity extends AppCompatActivity {
     //TODO: Create a message class with name, and message
     FirebaseDatabase firebaseDatabase;
     DatabaseReference databaseReference;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
