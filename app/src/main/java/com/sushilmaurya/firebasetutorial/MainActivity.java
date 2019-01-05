@@ -1,11 +1,14 @@
 package com.sushilmaurya.firebasetutorial;
 
+import android.content.Intent;
+import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -18,6 +21,9 @@ public class MainActivity extends AppCompatActivity {
     //TODO: Instantiate and add authstatelistener
     FirebaseDatabase firebaseDatabase;
     DatabaseReference databaseReference;
+
+    FirebaseAuth firebaseAuth;
+    FirebaseAuth.AuthStateListener authStateListener;
 
 
     @Override
@@ -49,6 +55,19 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        firebaseAuth = FirebaseAuth.getInstance();
+        authStateListener = new FirebaseAuth.AuthStateListener() {
+            @Override
+            public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
+                if(firebaseAuth.getCurrentUser() == null){
+                    Intent intent = new Intent(MainActivity.this, LoginActivity.class);
+                    intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                    startActivity(intent);
+                }
+            }
+        };
+
+        firebaseAuth.addAuthStateListener(authStateListener);
 
     }
 
