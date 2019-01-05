@@ -13,7 +13,9 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 public class MainActivity extends AppCompatActivity {
-    //TODO: Create a message class with name, and message
+    //TODO: Authenticate
+    //TODO: Add Firebase Authentication
+    //TODO: Instantiate and add authstatelistener
     FirebaseDatabase firebaseDatabase;
     DatabaseReference databaseReference;
 
